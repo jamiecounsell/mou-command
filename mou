@@ -15,8 +15,10 @@ else
         then
             `open  $var`
         else
-            if [ "${var#*.}" == ".md" ]
+        	echo ${var: -3}
+            if [ "${var: -3}" == ".md" ]
             then
+            	`touch $var`
                 `open /Applications/Mou.app/ $var`
             else
                 `touch $var.md`

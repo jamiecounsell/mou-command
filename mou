@@ -1,0 +1,29 @@
+#!/bin/bash
+
+underline=`tput smul`
+nounderline=`tput rmul`
+
+#MOU = "/Applications/Mou.app/"
+
+if [ $# -eq 0 ]; then
+    echo "Usage: mou ${underline}file1${nounderline} ${underline}file2${nounderline} ... "
+    exit 1
+else
+	for var in "$@"
+	do
+		if [ -f $var ];
+		then
+			`open  $var`
+	    else
+			if [ "${var#*.}" == ".md" ]
+			then
+				`open /Applications/Mou.app/ $var`
+			else
+				`touch $var.md`
+				`open /Applications/Mou.app/ $var.md`
+			fi
+		fi	
+	done
+fi
+
+
